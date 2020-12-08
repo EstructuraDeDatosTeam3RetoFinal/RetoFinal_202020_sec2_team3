@@ -9,13 +9,13 @@ public class View
 	     */
 	    public View()
 	    {
-	    	
+
 	    }
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Cargar Datos de Taxis");
-			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
+			System.out.println("1. Cargar Datos de Taxis parte A");
+			System.out.println(" ");
 		}
 
 		public void printMessage(String mensaje) {

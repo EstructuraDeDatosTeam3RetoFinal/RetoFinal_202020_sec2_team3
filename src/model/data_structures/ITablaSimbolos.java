@@ -54,13 +54,13 @@ public interface ITablaSimbolos <K,V>{
 	 * 	Retorna todas las llaves almacenadas en la Tabla.
 	 * @return Retorna todas las llaves almacenadas en la Tabla.
 	 */
-	public List<K> keySet();
+	public ListaEncadenadaSinComparable<K> keySet();
 
 	/**
 	 * 	Retorna todos los valores almacenados en la Tabla.
 	 * @return	
 	 * Retorna todos los valores almacenados en la Tabla.
 	 */
-	public List<V> valueSet();
+	public ListaEncadenadaSinComparable<V> valueSet();
 
 }

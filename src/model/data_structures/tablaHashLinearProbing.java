@@ -80,15 +80,21 @@ public class tablaHashLinearProbing <K, V> implements ITablaSimbolos <K, V>{
 
 	
 	public boolean contains(K key) {
+		
 		int hashKey = hash(key);
 		int cantidadDeDatosPasados = 0;
 		while(cantidadDeDatosPasados<M) {
-			if(listaLlaves[hashKey].equals(key)) {
+			if(listaLlaves[hashKey]== null)
+			{
+				return false; 
+			}
+			else if(listaLlaves[hashKey].equals(key)) {
 				return true;
 			}else {
 				hashKey = (hashKey+1)%M;
 				cantidadDeDatosPasados ++;
 			}
+			
 		}
 		return false;
 	}
@@ -114,19 +120,20 @@ public class tablaHashLinearProbing <K, V> implements ITablaSimbolos <K, V>{
 	}
 
 	
-	public List<K> keySet() {
-		List<K> listaRta  = new ArrayList<K>();
-		for (K k : listaLlaves) {
-			if(k!=null)listaRta.add(k);
+	public ListaEncadenadaSinComparable<K> keySet() {
+		ListaEncadenadaSinComparable<K> listaRta  = new ListaEncadenadaSinComparable<K>();
+		for (K k : listaLlaves) 
+		{
+			if(k!=null)listaRta.agregarAlFinal(k);
 		}
 		return listaRta;
 	}
 
 	
-	public List<V> valueSet() {
-		List<V> listaRta  = new ArrayList<V>();
+	public ListaEncadenadaSinComparable<V> valueSet() {
+		ListaEncadenadaSinComparable<V> listaRta  = new ListaEncadenadaSinComparable<V>();
 		for (V v : listaValores) {
-			if(v!=null)listaRta.add(v);
+			if(v!=null)listaRta.agregarAlFinal(v);
 		}
 		return listaRta;
 	}

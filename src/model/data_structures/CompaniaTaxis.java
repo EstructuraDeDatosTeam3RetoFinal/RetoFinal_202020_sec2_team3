@@ -13,12 +13,18 @@ public class CompaniaTaxis
 	String nombreCompania; 
 	
 	/**
+	 * Lista con los taxis
+	 */
+	tablaHashLinearProbing<String, Taxi> listaTaxis; 
+	
+	/**
 	 * Constructor
 	 */
 	public CompaniaTaxis(String pNombre)
 	{
 		cantTaxis = 0;
 		nombreCompania = pNombre; 
+		listaTaxis = new tablaHashLinearProbing<String, Taxi>(100000); 
 	}
 	
 	/**
@@ -42,8 +48,24 @@ public class CompaniaTaxis
 	/**
 	 * Agrega un taxi a la cantidad de taxis de la compañía
 	 */
-	public void agregarTaxi()
+	public void agregarTaxi(Taxi taxi)
 	{
-		cantTaxis++; 
+		if(!(listaTaxis.contains(taxi.darId())))
+		{
+			listaTaxis.put(taxi.darId(), taxi);
+			cantTaxis++; 
+		}
+	}
+	
+	public boolean existeTaxi(String id)
+	{
+		if(listaTaxis.contains(id))
+		{
+			return true; 
+		}
+		else
+		{
+			return false; 
+		}
 	}
 }

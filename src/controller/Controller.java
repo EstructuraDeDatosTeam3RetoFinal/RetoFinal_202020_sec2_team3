@@ -36,7 +36,10 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");					
+					view.printMessage("--------- \n Cargando Taxis: ");			
+					modelo.cargarDatosParteA();
+					int cantidadTaxis = modelo.darCantidadTaxis();
+					view.printMessage("--------- \n La cantidad de Taxis es: " + cantidadTaxis);	
 					break;
 
 				default: 
