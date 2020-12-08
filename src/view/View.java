@@ -14,7 +14,7 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("1. Cargar Datoss");
+			System.out.println("1. Cargar Datos de Taxis");
 			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}
 
