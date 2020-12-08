@@ -1,15 +1,10 @@
 package model.logic;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
