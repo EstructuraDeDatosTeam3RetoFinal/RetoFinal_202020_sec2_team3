@@ -6,6 +6,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import javax.sound.midi.SysexMessage;
+
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -17,6 +19,7 @@ import controller.Controller;
 import model.data_structures.ArregloDinamico;
 import model.data_structures.CompaniaTaxis;
 import model.data_structures.IArregloDinamico;
+import model.data_structures.ListaEncadenadaSinComparable;
 import model.data_structures.Taxi;
 import model.data_structures.tablaHashLinearProbing;
 
@@ -26,7 +29,7 @@ import model.data_structures.tablaHashLinearProbing;
  */
 public class Modelo {
 	
-	private static String file = "taxi-trips-wrvz-psew-subset-small.csv";
+	private static String file = "taxi-trips-wrvz-psew-subset-large.csv";
 	
 	/**
 	 * Atributos del modelo del mundo
@@ -100,42 +103,38 @@ public class Modelo {
 		    while ((line = csvReader.readNext()) != null) 
 		    {
 		  
-		    	if(line[14].equals("Chicago Independents"))
+		    	if(line[13].equals("Chicago Independents"))
 		    	{
-		    		if(!(companias.contains("Independent Owner")))
+		    		if((companias.contains("Independent Owner"))==false)
 		    		{
 		    			CompaniaTaxis nueva = new CompaniaTaxis("Independent Owner"); 
 		    			Taxi taxiAct = new Taxi(line[1]); 
-			    		nueva.agregarTaxi(taxiAct);
-			    		cantidadTaxis++;
-			    	
-		    		}
+			    		nueva.agregarTaxi(taxiAct);    
+			    		companias.put(nueva.darNombreCompania(), nueva);
+			    	}
 		    		else
 		    		{
-		    			if(!(companias.get("Independent Owner").existeTaxi(line[1])))
+		    			if((companias.get("Independent Owner").existeTaxi(line[1]))==false)
 		    			{
 		    				Taxi taxiAct = new Taxi(line[1]);
 		    				companias.get("Independent Owner").agregarTaxi(taxiAct);
-		    				cantidadTaxis++;
 		    			
 		    			}
 		    		}
 		    	}
-		    	else if((companias.contains(line[14])== false))
+		    	else if((companias.contains(line[13])== false))
 		    	{
-		    		CompaniaTaxis nueva = new CompaniaTaxis(line[14]); 
+		    		CompaniaTaxis nueva = new CompaniaTaxis(line[13]); 
 		    		Taxi taxiAct = new Taxi(line[1]);
 		    		nueva.agregarTaxi(taxiAct);
-		    		cantidadTaxis++;
-		    	
+		    		companias.put(nueva.darNombreCompania(), nueva);
 		    	}
 		    	else
 		    	{
-		    		if(!(companias.get(line[14]).existeTaxi(line[1])))
+		    		if((companias.get(line[13]).existeTaxi(line[1])==false))
 		    		{
 		    			Taxi taxiAct = new Taxi(line[1]);
-		    			companias.get(line[14]).agregarTaxi(taxiAct);
-		    			cantidadTaxis++;
+		    			companias.get(line[13]).agregarTaxi(taxiAct);
 		    			
 		    		}
 		    	}
@@ -151,10 +150,21 @@ public class Modelo {
 	
 	public int darCantidadTaxis()
 	{
+		ListaEncadenadaSinComparable<CompaniaTaxis> companiasTaxis = companias.valueSet(); 
+		for (int i = 0; i < companias.valueSet().contarDatos(); i++) 
+		{
+			CompaniaTaxis act = companiasTaxis.darElemento(i); 
+			cantidadTaxis += act.darCantidadTaxis();
+		}
 		return cantidadTaxis; 
 	}
+	
 	public void printMessage(String message) {
 		controller.printMessage(message);
 	}
 	
+	public ListaEncadenadaSinComparable<String> darCompanias()
+	{
+		return companias.keySet(); 
+	}
 }

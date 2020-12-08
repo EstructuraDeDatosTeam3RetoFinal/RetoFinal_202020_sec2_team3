@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
+import model.data_structures.ListaEncadenadaSinComparable;
 import model.logic.Modelo;
 import view.View;
 
@@ -39,7 +40,15 @@ public class Controller {
 					view.printMessage("--------- \n Cargando Taxis: ");			
 					modelo.cargarDatosParteA();
 					int cantidadTaxis = modelo.darCantidadTaxis();
-					view.printMessage("--------- \n La cantidad de Taxis es: " + cantidadTaxis);	
+					view.printMessage("--------- \n La cantidad de Taxis es: " + cantidadTaxis);
+					view.printMessage("\n");
+					view.printMessage(" Las compañias con más de un taxi son: ");
+					ListaEncadenadaSinComparable<String> companias = modelo.darCompanias(); 
+					for (int i = 0; i < companias.contarDatos(); i++) 
+					{
+						view.printMessage(companias.darElemento(i)); 
+					}
+					
 					break;
 
 				default: 

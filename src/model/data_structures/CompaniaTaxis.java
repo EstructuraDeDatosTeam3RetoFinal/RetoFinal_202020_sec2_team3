@@ -25,6 +25,7 @@ public class CompaniaTaxis
 		cantTaxis = 0;
 		nombreCompania = pNombre; 
 		listaTaxis = new tablaHashLinearProbing<String, Taxi>(100000); 
+		
 	}
 	
 	/**
@@ -50,7 +51,7 @@ public class CompaniaTaxis
 	 */
 	public void agregarTaxi(Taxi taxi)
 	{
-		if(!(listaTaxis.contains(taxi.darId())))
+		if((listaTaxis.contains(taxi.darId())== false))
 		{
 			listaTaxis.put(taxi.darId(), taxi);
 			cantTaxis++; 
