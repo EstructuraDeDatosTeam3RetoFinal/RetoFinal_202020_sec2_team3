@@ -1,14 +1,10 @@
 package model.data_structures;
 
-import Clases.CompaniaTaxis;
-import model.data_structures.ListaEncadenadaSinComparable.Nodo;
-
-public class ListaEncadenadaSinComparable<T> 
-{
+public class ListaEncadenada<T extends Comparable<T>> implements IListaEncadenada<T>{
 
 	private Nodo first,last;
 	
-	private int tamano = 0;
+	private int tamano;
 
 	public class Nodo{
 
@@ -34,8 +30,7 @@ public class ListaEncadenadaSinComparable<T>
 
 	}
 
-	public ListaEncadenadaSinComparable()
-	{
+	public ListaEncadenada(){
 		first = null;
 		last = null;
 	}
@@ -49,8 +44,7 @@ public class ListaEncadenadaSinComparable<T>
 		return last;
 	}
 	
-	public int contarDatos() 
-	{
+	public int contarDatos() {
 		return tamano;
 	}
 
@@ -97,7 +91,7 @@ public class ListaEncadenadaSinComparable<T>
 	}
 
 	public boolean existeEnLaLista() {
-		return first == null? false:true ;
+		return first == null? true:false ;
 	}
 
 	public void agregarAlPrincipio(T dato) {
@@ -105,14 +99,13 @@ public class ListaEncadenadaSinComparable<T>
 		if(first==null)
 		{
 			first = nodo;
-			tamano++;
 		}
 		else
 		{
 			nodo.cambiarSiguiente(first);
 			first = nodo;
-			tamano++;
 		}
+		tamano++;
 	}
 
 	public T borrar(T dato) {
@@ -170,15 +163,14 @@ public class ListaEncadenadaSinComparable<T>
 
 	}
 
-
-	public void agregarAlFinal(T dato)
-	{
+	@Override
+	public void agregarAlFinal(T dato) {
 		last.cambiarSiguiente(new Nodo(dato));
 		last = last.darSiguiente();
 		tamano++;
 	}
 
-
+	@Override
 	public T darElemento(int elemento) {
 		if (elemento>tamano) {
 			return null;
@@ -191,37 +183,13 @@ public class ListaEncadenadaSinComparable<T>
 		}
 		return actual.darInfo();
 	}
-	
-	public Nodo darNodoElemento(int elemento) {
-		if (elemento>tamano) {
-			return null;
-		}
-		Nodo actual = first;
-		int index = 0;
-		while (index<elemento) {
-			actual = actual.darSiguiente();
-			index++;
-		}
-		return actual;
-	}
-	
-	public void insertarEnPosicion(int pos, T dato)
-	{
-		if (pos<tamano) 
-		{
-			Nodo insertado = new Nodo(dato); 
-			Nodo actual = first;
-			int index = 0;
-			while (index<pos-1) 
-			{
-				actual = actual.darSiguiente();
-				index++;
-			}
-			Nodo temp = actual;
-			actual.cambiarSiguiente(insertado);
-			insertado.cambiarSiguiente(temp.darSiguiente());
-		}
-	}
 
+	@Override
+	public Comparable[] elementos() {
+		Comparable[] elementos = new Comparable[tamano];
+		for (int i=0;i<tamano;i++) {
+			elementos[i]=darElemento(i);
+		}
+		return elementos;
+	}
 }
-

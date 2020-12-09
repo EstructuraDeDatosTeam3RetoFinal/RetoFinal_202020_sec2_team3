@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
+import Clases.CompaniaTaxis;
 import model.data_structures.ListaEncadenadaSinComparable;
 import model.logic.Modelo;
 import view.View;
@@ -64,6 +65,32 @@ public class Controller {
 						{
 							view.printMessage(companias.darElemento(i)); 
 						}	
+						Scanner sc = new Scanner(System.in);
+						view.printMessage("---------\n Compañías con mayor cantidad de taxis");
+						view.printMessage("Ingrese de cuantas compañías quiere que sea el top :");
+						int cantidad = sc.nextInt(); 
+						view.printMessage("El top " + cantidad + " de compañias con más taxis son:\n---------");
+						CompaniaTaxis[] topCompanias = modelo.darCompaniasConMasTaxis();
+						for (int i = 0; i < cantidad; i++) 
+						{
+							int pos = i+1;
+							CompaniaTaxis act = topCompanias[i];
+							view.printMessage(pos+". " + act.darNombreCompania() + ": " + act.darCantidadTaxis() + " taxis");
+							
+						}
+						
+						view.printMessage("---------\n Compañías con mayor cantidad de viajes");
+						view.printMessage("---------\n Ingrese de cuantas compañías quiere que sea el top :");
+						int cantidad2 = sc.nextInt(); 
+						view.printMessage("---------\nEl top " + cantidad2 + " de compañias con más viajes son:\n---------");
+						CompaniaTaxis[] topCompanias2 = modelo.darCompaniasConMasViajes();
+						for (int i = 0; i < cantidad2; i++) 
+						{
+							int pos = i+1;
+							CompaniaTaxis act = topCompanias2[i];
+							view.printMessage(pos+". " + act.darNombreCompania() + ": " + act.darCantidadViajes() + " viajes");
+						}
+						
 						view.printMessage("---------\n");
 					}
 					else {

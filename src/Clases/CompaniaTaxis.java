@@ -20,6 +20,11 @@ public class CompaniaTaxis
 	tablaHashLinearProbing<String, Taxi> listaTaxis; 
 	
 	/**
+	 * Lista con los taxis
+	 */
+	int cantidadViajes; 
+	
+	/**
 	 * Constructor
 	 */
 	public CompaniaTaxis(String pNombre)
@@ -27,7 +32,7 @@ public class CompaniaTaxis
 		cantTaxis = 0;
 		nombreCompania = pNombre; 
 		listaTaxis = new tablaHashLinearProbing<String, Taxi>(100000); 
-		
+		cantidadViajes = 0; 
 	}
 	
 	/**
@@ -70,5 +75,15 @@ public class CompaniaTaxis
 		{
 			return false; 
 		}
+	}
+	
+	public void agregarViaje()
+	{
+		cantidadViajes++; 
+	}
+	
+	public int darCantidadViajes()
+	{
+		return cantidadViajes; 
 	}
 }
