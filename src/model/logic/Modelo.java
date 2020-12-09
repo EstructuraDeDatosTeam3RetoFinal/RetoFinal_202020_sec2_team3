@@ -57,10 +57,7 @@ public class Modelo {
 	 */
 	public Modelo(Controller pController)
 	{
-		controller = pController;
-		companias = new tablaHashLinearProbing<String, CompaniaTaxis>(1000); 
-		cantidadTaxis = 0; 
-		data = false;
+		controller = pController; 
 	}
 	
 	
@@ -74,6 +71,9 @@ public class Modelo {
 	 */
 	public void loadLarge()
 	{
+		companias = new tablaHashLinearProbing<String, CompaniaTaxis>(1000);
+		cantidadTaxis = 0; 
+		data = false;
 		Path path = FileSystems.getDefault().getPath("data/", fileLarge); 
 		Reader reader;
 		
@@ -139,6 +139,9 @@ public class Modelo {
 	 */
 	public void loadMedium()
 	{
+		companias = new tablaHashLinearProbing<String, CompaniaTaxis>(1000);
+		cantidadTaxis = 0; 
+		data = false;
 		Path path = FileSystems.getDefault().getPath("data/", fileMedium); 
 		Reader reader;
 		
@@ -203,6 +206,9 @@ public class Modelo {
 	 * Carga de los datos utilizando CSV, el file que carga es la data_small.
 	 */
 	public void loadSmall() {
+		companias = new tablaHashLinearProbing<String, CompaniaTaxis>(1000);
+		cantidadTaxis = 0; 
+		data = false;
 		Path path = FileSystems.getDefault().getPath("data/", fileSmall); 
 		Reader reader;
 		

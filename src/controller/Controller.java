@@ -57,7 +57,7 @@ public class Controller {
 						break;
 					}
 					if (modelo.darCarga()) {
-						view.printMessage("---------\n La cantidad de Taxis es: " + modelo.darCantidadTaxis());
+						view.printMessage("---------\nLa cantidad de Taxis es: " + modelo.darCantidadTaxis());
 						view.printMessage("---------\nLas compañias con más de un taxi son:\n---------");
 						ListaEncadenadaSinComparable<String> companias = modelo.darCompanias(); 
 						for (int i = 0; i < companias.contarDatos(); i++) 
