@@ -1,4 +1,6 @@
-package model.data_structures;
+package Clases;
+
+import model.data_structures.tablaHashLinearProbing;
 
 public class CompaniaTaxis 
 {

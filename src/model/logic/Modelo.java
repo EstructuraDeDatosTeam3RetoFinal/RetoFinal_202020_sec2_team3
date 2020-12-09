@@ -6,8 +6,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import javax.sound.midi.SysexMessage;
-
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -15,12 +13,12 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
+import Clases.CompaniaTaxis;
+import Clases.Taxi;
 import controller.Controller;
 import model.data_structures.ArregloDinamico;
-import model.data_structures.CompaniaTaxis;
 import model.data_structures.IArregloDinamico;
 import model.data_structures.ListaEncadenadaSinComparable;
-import model.data_structures.Taxi;
 import model.data_structures.tablaHashLinearProbing;
 
 /**
@@ -40,6 +38,7 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
+	private ShellSort sort;
 	private Controller controller;
 	private IArregloDinamico datos;
 	private tablaHashLinearProbing<String, CompaniaTaxis> companias; 
@@ -57,7 +56,8 @@ public class Modelo {
 	 */
 	public Modelo(Controller pController)
 	{
-		controller = pController; 
+		controller = pController;
+		sort = new ShellSort();
 	}
 	
 	
@@ -287,7 +287,9 @@ public class Modelo {
 		return data;
 	}
 	
-	
+	public void ShellSort(Comparable[]list, int tamanio) {
+		sort.ShellSort(list, tamanio);
+	}
 	//--------------------------------------------------------------------------------
 	//Metodos Parte A
 	//--------------------------------------------------------------------------------
