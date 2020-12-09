@@ -37,18 +37,38 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \n Cargando Taxis: ");			
-					modelo.cargarDatosParteA();
-					int cantidadTaxis = modelo.darCantidadTaxis();
-					view.printMessage("--------- \n La cantidad de Taxis es: " + cantidadTaxis);
-					view.printMessage("\n");
-					view.printMessage(" Las compañias con más de un taxi son: ");
-					ListaEncadenadaSinComparable<String> companias = modelo.darCompanias(); 
-					for (int i = 0; i < companias.contarDatos(); i++) 
-					{
-						view.printMessage(companias.darElemento(i)); 
+					view.printMessage("--------- \n Indique cual data desea cargar: ");	
+					view.printMessage("1. Data completa ");	
+					view.printMessage("2. Data media");	
+					view.printMessage("3. Data resumida");	
+					int database = lector.nextInt();
+					switch(database) {
+					case 1:
+						modelo.loadLarge();
+						break;
+					case 2:
+						modelo.loadMedium();
+						break;
+					case 3:
+						modelo.loadSmall();
+						break;
+					default:
+						view.printMessage("Error, opcion incorrecta");	
+						break;
 					}
-					
+					if (modelo.darCarga()) {
+						view.printMessage("---------\n La cantidad de Taxis es: " + modelo.darCantidadTaxis());
+						view.printMessage("---------\nLas compañias con más de un taxi son:\n---------");
+						ListaEncadenadaSinComparable<String> companias = modelo.darCompanias(); 
+						for (int i = 0; i < companias.contarDatos(); i++) 
+						{
+							view.printMessage(companias.darElemento(i)); 
+						}	
+						view.printMessage("\n");
+					}
+					else {
+						view.printMessage("--------- \n Ocurrio un error al cargar los datos");
+					}
 					break;
 
 				default: 
