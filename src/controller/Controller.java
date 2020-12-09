@@ -37,7 +37,7 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \n Indique cual data desea cargar: ");	
+					view.printMessage("--------- \nIndique cual data desea cargar: ");	
 					view.printMessage("1. Data completa ");	
 					view.printMessage("2. Data media");	
 					view.printMessage("3. Data resumida");	
@@ -64,15 +64,15 @@ public class Controller {
 						{
 							view.printMessage(companias.darElemento(i)); 
 						}	
-						view.printMessage("\n");
+						view.printMessage("---------\n");
 					}
 					else {
-						view.printMessage("--------- \n Ocurrio un error al cargar los datos");
+						view.printMessage("--------- \nOcurrio un error al cargar los datos");
 					}
 					break;
 
 				default: 
-					view.printMessage("--------- \n Opcion Invalida !! \n---------");
+					view.printMessage("--------- \nOpcion Invalida !! \n---------");
 					break;
 			}
 		}
