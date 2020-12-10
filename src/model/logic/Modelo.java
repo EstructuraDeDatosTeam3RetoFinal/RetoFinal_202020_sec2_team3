@@ -40,7 +40,6 @@ public class Modelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private ShellSort sort;
 	private Controller controller;
 	private IArregloDinamico datos;
 	private tablaHashLinearProbing<String, CompaniaTaxis> companias; 
@@ -59,7 +58,6 @@ public class Modelo {
 	public Modelo(Controller pController)
 	{
 		controller = pController;
-		sort = new ShellSort();
 	}
 	
 	
@@ -85,11 +83,10 @@ public class Modelo {
 			
 			CSVParser parser = new CSVParserBuilder().withSeparator(',').withIgnoreQuotations(true).build();
 			CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).withCSVParser(parser).build();
-			
+
 		    String[] line;
 		    while ((line = csvReader.readNext()) != null) 
 		    {
-		  
 		    	if(line[12].equals("Chicago Independents"))
 		    	{
 		    		if((companias.contains("Independent Owner"))==false)
@@ -163,11 +160,10 @@ public class Modelo {
 			
 			CSVParser parser = new CSVParserBuilder().withSeparator(',').withIgnoreQuotations(true).build();
 			CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).withCSVParser(parser).build();
-			
+
 		    String[] line;
 		    while ((line = csvReader.readNext()) != null) 
 		    {
-		  
 		    	if(line[13].equals("Chicago Independents"))
 		    	{
 		    		if((companias.contains("Independent Owner"))==false)
@@ -241,11 +237,10 @@ public class Modelo {
 			
 			CSVParser parser = new CSVParserBuilder().withSeparator(',').withIgnoreQuotations(true).build();
 			CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).withCSVParser(parser).build();
-			
+
 		    String[] line;
 		    while ((line = csvReader.readNext()) != null) 
 		    {
-		  
 		    	if(line[14].equals("Chicago Independents"))
 		    	{
 		    		if((companias.contains("Independent Owner"))==false)
@@ -311,7 +306,6 @@ public class Modelo {
 		controller.printMessage(message);
 	}
 	
-	
 	public ListaEncadenadaSinComparable<String> darCompanias()
 	{
 		return companias.keySet(); 
@@ -320,10 +314,7 @@ public class Modelo {
 	public boolean darCarga() {
 		return data;
 	}
-	
-	public void ShellSort(Comparable[]list, int tamanio) {
-		sort.ShellSort(list, tamanio);
-	}
+
 	//--------------------------------------------------------------------------------
 	//Metodos Parte A
 	//--------------------------------------------------------------------------------

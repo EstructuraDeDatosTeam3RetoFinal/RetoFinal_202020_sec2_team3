@@ -20,7 +20,9 @@ public class tablaHashLinearProbing <K, V> implements ITablaSimbolos <K, V>{
 		listaLlaves = (K[]) new Object[pCapacidadInicial];
 	}
 	
-	private int hash (K key) {return ((key.hashCode() & 0x7fffffff) % M);}
+	private int hash (K key) {
+		return ((key.hashCode() & 0x7fffffff) % M);
+	}
 
 	public void put(K key, V value) {
 		if (N >= M/2) reHash();  // double M (see text)
