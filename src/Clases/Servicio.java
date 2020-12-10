@@ -2,18 +2,38 @@ package Clases;
 	
 import org.joda.time.LocalDateTime;
 
-public class Servicio {
+public class Servicio implements Comparable {
 	
 	private int millas;
 	private int pago;
-	private LocalDateTime fechaInicio, fechaFin;
+	private LocalDateTime fecha;
 	
-	public Servicio(int pMillas,int pPago) {
+	public Servicio(String pFechaIncial, String pFechaFinal, int pMillas,int pPago) {
 		millas = pMillas;
 		pago = pPago;
 	}
 	
 	public int darPuntos() {
 		return (millas/pago);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		try {
+			Servicio otro = (Servicio)o;
+			if (fecha.isAfter(otro.fecha)) {
+				return 1;
+			}
+			else if (fecha.isBefore(otro.fecha)) {
+				return -1;
+			}
+			else {
+				return 0;
+			}	
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -2;
 	}
 }

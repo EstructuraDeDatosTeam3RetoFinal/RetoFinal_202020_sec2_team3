@@ -41,7 +41,6 @@ public class Modelo {
 	 * Atributos del modelo del mundo
 	 */
 	private Controller controller;
-	private IArregloDinamico datos;
 	private tablaHashLinearProbing<String, CompaniaTaxis> companias; 
 	private int cantidadTaxis;
 	private boolean data;

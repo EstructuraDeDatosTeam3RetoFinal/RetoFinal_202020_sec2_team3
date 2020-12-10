@@ -17,4 +17,9 @@ public class Taxi
 	{
 		return idTaxi; 
 	}
+	
+	public void AgregarServicio(String fechaInicial, String fechaFinal, int pMillas, int pPago) {
+		Servicio servicio = new Servicio(fechaInicial,fechaFinal,pMillas,pPago);
+		servicios.insert(servicio);
+	}
 }
