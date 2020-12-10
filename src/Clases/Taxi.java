@@ -1,12 +1,11 @@
 package Clases;
 
-import model.data_structures.IListaEncadenada;
-import model.data_structures.ListaEncadenada;
+import model.data_structures.ListaEncadenadaSinComparable;
 
 public class Taxi 
 {
 	String idTaxi;
-	IListaEncadenada servicios = new ListaEncadenada();
+	ListaEncadenadaSinComparable<Servicio> servicios = new ListaEncadenadaSinComparable<Servicio>();
 	
 	public Taxi(String pId)
 	{

@@ -2,7 +2,7 @@ package Clases;
 	
 import org.joda.time.LocalDateTime;
 
-public class Servicio implements Comparable {
+public class Servicio {
 	
 	private int millas;
 	private int pago;
@@ -17,10 +17,7 @@ public class Servicio implements Comparable {
 		return (millas/pago);
 	}
 
-	@Override
-	public int compareTo(Object o) {
-		try {
-			Servicio otro = (Servicio)o;
+	public int compareTo(Servicio otro) {
 			if (fecha.isAfter(otro.fecha)) {
 				return 1;
 			}
@@ -29,11 +26,6 @@ public class Servicio implements Comparable {
 			}
 			else {
 				return 0;
-			}	
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return -2;
+			}
 	}
 }
