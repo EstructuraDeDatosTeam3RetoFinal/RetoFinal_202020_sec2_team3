@@ -16,6 +16,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 import Clases.CompaniaTaxis;
+import Clases.Servicio;
 import Clases.Taxi;
 import controller.Controller;
 import model.data_structures.ArregloDinamico;
@@ -90,9 +91,10 @@ public class Modelo {
 		    		if((companias.contains("Independent Owner"))==false)
 		    		{
 		    			CompaniaTaxis nueva = new CompaniaTaxis("Independent Owner"); 
-		    			Taxi taxiAct = new Taxi(line[1]); 
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
 			    		nueva.agregarTaxi(taxiAct);    
-			    		nueva.agregarViaje();
+			    		nueva.agregarViaje(taxiAct,servicio);
 			    		companias.put(nueva.darNombreCompania(), nueva);
 			    	}
 		    		else
@@ -100,12 +102,15 @@ public class Modelo {
 		    			if((companias.get("Independent Owner").existeTaxi(line[1]))==false)
 		    			{
 		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
 		    				companias.get("Independent Owner").agregarTaxi(taxiAct);
-		    				companias.get("Independent Owner").agregarViaje();
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    			else
 		    			{
-		    				companias.get("Independent Owner").agregarViaje();
+		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    		}
 		    	}
@@ -113,8 +118,9 @@ public class Modelo {
 		    	{
 		    		CompaniaTaxis nueva = new CompaniaTaxis(line[12]); 
 		    		Taxi taxiAct = new Taxi(line[1]);
+		    		Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
 		    		nueva.agregarTaxi(taxiAct);
-		    		nueva.agregarViaje();
+		    		nueva.agregarViaje(taxiAct,servicio);
 		    		companias.put(nueva.darNombreCompania(), nueva);
 		    	}
 		    	else
@@ -122,12 +128,15 @@ public class Modelo {
 		    		if((companias.get(line[12]).existeTaxi(line[1])==false))
 		    		{
 		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
 		    			companias.get(line[12]).agregarTaxi(taxiAct);
-		    			companias.get(line[12]).agregarViaje();
+		    			companias.get(line[12]).agregarViaje(taxiAct,servicio);
 		    		}
 		    		else
 		    		{
-		    			companias.get(line[12]).agregarViaje();
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[10]));
+		    			companias.get(line[12]).agregarViaje(taxiAct,servicio);
 		    		}
 		    	}
 		    }
@@ -167,9 +176,10 @@ public class Modelo {
 		    		if((companias.contains("Independent Owner"))==false)
 		    		{
 		    			CompaniaTaxis nueva = new CompaniaTaxis("Independent Owner"); 
-		    			Taxi taxiAct = new Taxi(line[1]); 
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
 			    		nueva.agregarTaxi(taxiAct);    
-			    		nueva.agregarViaje();
+			    		nueva.agregarViaje(taxiAct,servicio);
 			    		companias.put(nueva.darNombreCompania(), nueva);
 			    	}
 		    		else
@@ -177,13 +187,15 @@ public class Modelo {
 		    			if((companias.get("Independent Owner").existeTaxi(line[1]))==false)
 		    			{
 		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
 		    				companias.get("Independent Owner").agregarTaxi(taxiAct);
-		    				companias.get("Independent Owner").agregarViaje();
-		    			
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    			else
 		    			{
-		    				companias.get("Independent Owner").agregarViaje();
+		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    		}
 		    	}
@@ -191,8 +203,9 @@ public class Modelo {
 		    	{
 		    		CompaniaTaxis nueva = new CompaniaTaxis(line[13]); 
 		    		Taxi taxiAct = new Taxi(line[1]);
+		    		Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
 		    		nueva.agregarTaxi(taxiAct);
-		    		nueva.agregarViaje();
+		    		nueva.agregarViaje(taxiAct,servicio);
 		    		companias.put(nueva.darNombreCompania(), nueva);
 		    	}
 		    	else
@@ -200,17 +213,20 @@ public class Modelo {
 		    		if((companias.get(line[13]).existeTaxi(line[1])==false))
 		    		{
 		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
 		    			companias.get(line[13]).agregarTaxi(taxiAct);
-		    			companias.get(line[13]).agregarViaje();
+		    			companias.get(line[13]).agregarViaje(taxiAct,servicio);
 		    		}
 		    		else
 		    		{
-		    			companias.get(line[13]).agregarViaje();
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[11]));
+		    			companias.get(line[13]).agregarViaje(taxiAct,servicio);
 		    		}
 		    	}
 		    }
 		    reader.close();
-		    csvReader.close();
+		    csvReader.close();  
 		    data = true;
 		} 
 		catch (IOException | NumberFormatException | CsvValidationException e) 
@@ -244,9 +260,10 @@ public class Modelo {
 		    		if((companias.contains("Independent Owner"))==false)
 		    		{
 		    			CompaniaTaxis nueva = new CompaniaTaxis("Independent Owner"); 
-		    			Taxi taxiAct = new Taxi(line[1]); 
-			    		nueva.agregarTaxi(taxiAct);   
-			    		nueva.agregarViaje();
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
+			    		nueva.agregarTaxi(taxiAct);    
+			    		nueva.agregarViaje(taxiAct,servicio);
 			    		companias.put(nueva.darNombreCompania(), nueva);
 			    	}
 		    		else
@@ -254,22 +271,25 @@ public class Modelo {
 		    			if((companias.get("Independent Owner").existeTaxi(line[1]))==false)
 		    			{
 		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
 		    				companias.get("Independent Owner").agregarTaxi(taxiAct);
-		    				companias.get("Independent Owner").agregarViaje();
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    			else
 		    			{
-		    				companias.get("Independent Owner").agregarViaje();
+		    				Taxi taxiAct = new Taxi(line[1]);
+		    				Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
+		    				companias.get("Independent Owner").agregarViaje(taxiAct,servicio);
 		    			}
 		    		}
 		    	}
-		    	
 		    	else if((companias.contains(line[14])== false))
 		    	{
 		    		CompaniaTaxis nueva = new CompaniaTaxis(line[14]); 
 		    		Taxi taxiAct = new Taxi(line[1]);
+		    		Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
 		    		nueva.agregarTaxi(taxiAct);
-		    		nueva.agregarViaje();
+		    		nueva.agregarViaje(taxiAct,servicio);
 		    		companias.put(nueva.darNombreCompania(), nueva);
 		    	}
 		    	else
@@ -277,17 +297,20 @@ public class Modelo {
 		    		if((companias.get(line[14]).existeTaxi(line[1])==false))
 		    		{
 		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
 		    			companias.get(line[14]).agregarTaxi(taxiAct);
-		    			companias.get(line[14]).agregarViaje();
+		    			companias.get(line[14]).agregarViaje(taxiAct,servicio);
 		    		}
 		    		else
 		    		{
-		    			companias.get(line[14]).agregarViaje();
+		    			Taxi taxiAct = new Taxi(line[1]);
+		    			Servicio servicio = new Servicio (line[3],toFloat(line[5]),toFloat(line[12]));
+		    			companias.get(line[14]).agregarViaje(taxiAct,servicio);
 		    		}
 		    	}
 		    }
 		    reader.close();
-		    csvReader.close(); 
+		    csvReader.close();  
 		    data = true;
 		} 
 		catch (IOException | NumberFormatException | CsvValidationException e) 
@@ -482,5 +505,12 @@ public class Modelo {
 	//--------------------------------------------------------------------------------
 	//Metodos Parte B
 	//--------------------------------------------------------------------------------
-	
+	public float toFloat(String toConvert) {
+		if (toConvert.isEmpty()) {
+			return 0;
+		}
+		else {
+			return Float.parseFloat(toConvert);
+		}
+	}
 }

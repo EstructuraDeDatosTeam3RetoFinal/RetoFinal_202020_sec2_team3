@@ -4,16 +4,16 @@ import org.joda.time.LocalDateTime;
 
 public class Servicio {
 	
-	private int millas;
-	private int pago;
+	private float millas;
+	private float pago;
 	private LocalDateTime fecha;
 	
-	public Servicio(String pFechaIncial, String pFechaFinal, int pMillas,int pPago) {
+	public Servicio(String pFecha, float pMillas,float pPago) {
 		millas = pMillas;
 		pago = pPago;
 	}
 	
-	public int darPuntos() {
+	public float darPuntos() {
 		return (millas/pago);
 	}
 
