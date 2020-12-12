@@ -9,7 +9,12 @@ public class Servicio {
 	private LocalDateTime fecha;
 	
 	public Servicio(String pFecha, float pMillas,float pPago) {
-		fecha = LocalDateTime.parse(pFecha);
+		if(!pFecha.isEmpty()) {
+			fecha = LocalDateTime.parse(pFecha);	
+		}
+		else {
+			fecha = LocalDateTime.now();
+		}
 		millas = pMillas;
 		pago = pPago;
 	}

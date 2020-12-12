@@ -7,12 +7,13 @@ import model.data_structures.ListaEncadenadaSinComparable;
 public class Taxi 
 {
 	String idTaxi;
-	float puntos = 0;
+	float puntos;
 	ListaEncadenadaSinComparable<Servicio> servicios;
 	SimpleDateFormat format = new SimpleDateFormat();
 	
 	public Taxi(String pId)
 	{
+		puntos = 0;
 		idTaxi = pId; 
 		servicios = new ListaEncadenadaSinComparable<Servicio>();
 	}
@@ -31,6 +32,7 @@ public class Taxi
 	}
 	
 	public void darPuntosAntesDe(String pFecha){
+		puntos = 0;
 		LocalDateTime fecha = LocalDateTime.parse(pFecha);
 		for (int i = 0;i<servicios.contarDatos();i++) {
 			Servicio servicioAct = servicios.darPosicionDatos(i);
@@ -44,6 +46,7 @@ public class Taxi
 	}
 	
 	public void darPuntosEntre(String pFechaInicial, String pFechaFinal){
+		puntos = 0;
 		LocalDateTime fechaInicial = LocalDateTime.parse(pFechaInicial);
 		LocalDateTime fechaFinal = LocalDateTime.parse(pFechaFinal);
 		for (int i = 0;i<servicios.contarDatos();i++) {
