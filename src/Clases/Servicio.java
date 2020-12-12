@@ -9,12 +9,20 @@ public class Servicio {
 	private LocalDateTime fecha;
 	
 	public Servicio(String pFecha, float pMillas,float pPago) {
+		fecha = LocalDateTime.parse(pFecha);
 		millas = pMillas;
 		pago = pPago;
 	}
 	
 	public float darPuntos() {
-		return (millas/pago);
+		if(millas>0 && pago>0) {
+			return (millas/pago);
+		}
+		return 0;
+	}
+	
+	public LocalDateTime darFecha() {
+		return fecha;
 	}
 
 	public int compareTo(Servicio otro) {

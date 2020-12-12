@@ -77,10 +77,10 @@ public class CompaniaTaxis
 		}
 	}
 	
-	public void agregarViaje(Taxi act, Servicio servicio)
+	public void agregarViaje(Taxi pTaxi, Servicio servicio)
 	{
 		cantidadViajes++;
-		Taxi taxi = listaTaxis.get(act.darId());
+		Taxi taxi = listaTaxis.get(pTaxi.darId());
 		taxi.AgregarServicio(servicio);
 	}
 	
