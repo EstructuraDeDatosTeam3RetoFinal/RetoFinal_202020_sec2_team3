@@ -36,6 +36,10 @@ public class CompaniaTaxis
 		cantidadViajes = 0; 
 	}
 	
+	public ListaEncadenadaSinComparable<Taxi> darTaxis()
+	{
+		return listaTaxis.valueSet(); 
+	}
 	/**
 	 * Da la cantidad de taxis de esta compañia
 	 * @return cantidad taxis
@@ -96,7 +100,7 @@ public class CompaniaTaxis
 	//-----------------------------
 	public void ordenarViajes() {
 		ListaEncadenadaSinComparable<Taxi> listaAux = listaTaxis.valueSet();
-		for(int i=0;i<listaAux.contarDatos()-1;i++) {
+		for(int i=0;i<listaAux.contarDatos();i++) {
 			Taxi act = listaAux.darElemento(i);
 			act.ordenarServicios();
 		}

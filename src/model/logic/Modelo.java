@@ -230,6 +230,11 @@ public class Modelo {
 		    		}
 		    	}
 		    }
+		    ListaEncadenadaSinComparable<CompaniaTaxis> listaAux = companias.valueSet();
+		    for(int i=0;i<listaAux.contarDatos()-1;i++){
+		    	CompaniaTaxis act = listaAux.darElemento(i);
+		    	act.ordenarViajes();
+		    }
 		    reader.close();
 		    csvReader.close();  
 		    data = true;
@@ -313,6 +318,11 @@ public class Modelo {
 		    			companias.get(line[14]).agregarViaje(taxiAct,servicio);
 		    		}
 		    	}
+		    }
+		    ListaEncadenadaSinComparable<CompaniaTaxis> listaAux = companias.valueSet();
+		    for(int i=0;i<listaAux.contarDatos()-1;i++){
+		    	CompaniaTaxis act = listaAux.darElemento(i);
+		    	act.ordenarViajes();
 		    }
 		    reader.close();
 		    csvReader.close();  
@@ -517,5 +527,70 @@ public class Modelo {
 		else {
 			return Float.parseFloat(toConvert);
 		}
+	}
+
+	public ListaEncadenadaSinComparable<Taxi> CalcularPuntosAntesDe(String pFecha){
+		ListaEncadenadaSinComparable<Taxi> rta = new ListaEncadenadaSinComparable<Taxi>();
+		ListaEncadenadaSinComparable<CompaniaTaxis> listacomp = companias.valueSet();
+		for (int i = 0; i < listacomp.contarDatos(); i++) 
+		{
+			CompaniaTaxis companiaAct = listacomp.darElemento(i); 
+			ListaEncadenadaSinComparable<Taxi> taxisCompania = companiaAct.darTaxis();
+			for (int j = 0;j<taxisCompania.contarDatos();j++) {
+				Taxi taxiAct = taxisCompania.darElemento(j);
+				rta.insert(taxiAct);
+			}
+		}
+		for(int i=0;i<rta.contarDatos();i++) {
+			Taxi taxiAct = rta.darElemento(i);
+			taxiAct.darPuntosAntesDe(pFecha);
+		}
+		return rta;
+	}
+	
+	public ListaEncadenadaSinComparable<Taxi> CalcularPuntosEntre(String pFechaInicio, String pFechaFinal) {
+		ListaEncadenadaSinComparable<Taxi> rta = new ListaEncadenadaSinComparable<Taxi>();
+		ListaEncadenadaSinComparable<CompaniaTaxis> listacomp = companias.valueSet();
+		for (int i = 0; i < listacomp.contarDatos(); i++) 
+		{
+			CompaniaTaxis companiaAct = listacomp.darElemento(i); 
+			ListaEncadenadaSinComparable<Taxi> taxisCompania = companiaAct.darTaxis();
+			for (int j = 0;j<taxisCompania.contarDatos();j++) {
+				Taxi taxiAct = taxisCompania.darElemento(j);
+				rta.insert(taxiAct);
+			}
+		}
+		for(int i=0;i<rta.contarDatos();i++) {
+			Taxi taxiAct = rta.darElemento(i);
+			taxiAct.darPuntosEntre(pFechaInicio,pFechaFinal);
+		}
+		return rta;
+	}
+	
+	public Taxi[] ShellSortTaxis(ListaEncadenadaSinComparable<Taxi> pLista) {
+		Taxi[] lista = new Taxi[pLista.contarDatos()];
+		for (int i=0;i<pLista.contarDatos();i++) {
+			lista[i]=pLista.darElemento(i);
+		}
+		
+		int salto, i;
+		Taxi aux;
+        boolean cambios;
+        for (salto = lista.length/2; salto > 0; salto /= 2) {
+            cambios = true;
+            while (cambios) {                                     
+                cambios = false;
+                for (i = lista.length-1; i >salto; i--)   
+                {
+                    if (lista[i - salto].darPuntos()<lista[i].darPuntos()) {       
+                    	aux = lista[i];                 
+                        lista[i] = lista[i - salto];
+                        lista[i - salto] = aux;
+                        cambios = true;                                             
+                    }
+                }
+            }
+        }
+        return lista;
 	}
 }

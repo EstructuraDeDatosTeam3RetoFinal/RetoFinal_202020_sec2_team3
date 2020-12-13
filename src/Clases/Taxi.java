@@ -31,6 +31,9 @@ public class Taxi
 		return idTaxi; 
 	}
 	
+	public float darPuntos() {
+		return puntos;
+	}
 	
 	//--------------------------------------
 	//Sets
@@ -44,8 +47,8 @@ public class Taxi
 	//Sorts
 	//--------------------------------------
 	public void ordenarServicios() {
-		Servicio[] lista= new Servicio[servicios.contarDatos()-1];
-		for (int i=0;i<servicios.contarDatos()-1;i++) {
+		Servicio[] lista= new Servicio[servicios.contarDatos()];
+		for (int i=0;i<servicios.contarDatos();i++) {
 			lista[i]=servicios.darElemento(i);
 		}
 		
@@ -100,7 +103,7 @@ public class Taxi
 		LocalDateTime fechaInicial = LocalDateTime.parse(pFechaInicial);
 		LocalDateTime fechaFinal = LocalDateTime.parse(pFechaFinal);
 		for (int i = 0;i<servicios.contarDatos();i++) {
-			Servicio servicioAct = servicios.darPosicionDatos(i);
+			Servicio servicioAct = servicios.darElemento(i);
 			if(servicioAct.darFecha().isAfter(fechaFinal)) {
 				break;
 			}
