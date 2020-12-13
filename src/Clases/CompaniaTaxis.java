@@ -1,5 +1,6 @@
 package Clases;
 
+import model.data_structures.ListaEncadenadaSinComparable;
 import model.data_structures.tablaHashLinearProbing;
 
 public class CompaniaTaxis 
@@ -87,5 +88,17 @@ public class CompaniaTaxis
 	public int darCantidadViajes()
 	{
 		return cantidadViajes; 
+	}
+	
+	
+	//-----------------------------
+	//Requerimiento B
+	//-----------------------------
+	public void ordenarViajes() {
+		ListaEncadenadaSinComparable<Taxi> listaAux = listaTaxis.valueSet();
+		for(int i=0;i<listaAux.contarDatos()-1;i++) {
+			Taxi act = listaAux.darElemento(i);
+			act.ordenarServicios();
+		}
 	}
 }

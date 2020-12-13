@@ -140,6 +140,11 @@ public class Modelo {
 		    		}
 		    	}
 		    }
+		    ListaEncadenadaSinComparable<CompaniaTaxis> listaAux = companias.valueSet();
+		    for(int i=0;i<listaAux.contarDatos()-1;i++){
+		    	CompaniaTaxis act = listaAux.darElemento(i);
+		    	act.ordenarViajes();
+		    }
 		    reader.close();
 		    csvReader.close();  
 		    data = true;
