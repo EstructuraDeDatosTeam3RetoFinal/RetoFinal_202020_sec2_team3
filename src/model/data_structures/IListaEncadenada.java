@@ -1,6 +1,6 @@
 package model.data_structures;
 
-import model.data_structures.ListaEncadenada.Nodo;
+import model.data_structures.ListaEncadenadaSinComparable.Nodo;
 
 public interface IListaEncadenada<T extends Comparable<T>> {
 	

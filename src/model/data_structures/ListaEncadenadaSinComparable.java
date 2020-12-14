@@ -223,5 +223,12 @@ public class ListaEncadenadaSinComparable<T>
 		}
 	}
 
+	public boolean isEmpty() {
+		if(tamano==0) {
+			return true;
+		}
+		return false;
+	}
+
 }
 
