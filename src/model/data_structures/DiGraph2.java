@@ -34,7 +34,7 @@ public class DiGraph2<K extends Comparable<K>, V extends Comparable<V>> {
     {
     	DiGraph2<K, V> invertido = new DiGraph2<K, V>();
     	invertido = this;
-    	List<Vertex<K, V>> listaVertices = vertices().valueSet();
+    	List<Vertex<K, V>> listaVertices = (List<Vertex<K, V>>) vertices().valueSet();
     	if(listaVertices.size()!=0)
     	{
     		for (int i = 0; i < listaVertices.size(); i++) 
@@ -243,11 +243,11 @@ public class DiGraph2<K extends Comparable<K>, V extends Comparable<V>> {
     }
 
     
-    public void addEdge(K source, K dest, Viaje weight) 
+    public void addEdge(K source, K dest, int peso) 
     {
     	if(containsVertex(source)  && containsVertex(dest))
     	{
-        Edge edge = new Edge(getVertex(source), getVertex(dest), weight);
+        Edge edge = new Edge(getVertex(source), getVertex(dest), peso);
         if(!hashEdges.contains(numEdges()) && edge != null)
         {
         	getVertex(source).addEdge(edge);

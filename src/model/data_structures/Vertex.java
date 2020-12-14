@@ -222,7 +222,7 @@ public class Vertex<K extends Comparable<K>, T extends Comparable<T>>
 	
 	public Iterable edgess()
 	{
-		return tablaArcos.valueSet();
+		return (Iterable) tablaArcos.valueSet();
 	}
 
 	public T getValor() {
